@@ -1,6 +1,6 @@
 {
   "name": "coding-dojo",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Coding Dojo",
   "scripts": {
     "test": "./node_modules/.bin/mocha -R spec --compilers coffee:coffee-script/register **/*-test.coffee"
