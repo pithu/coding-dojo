@@ -16,10 +16,10 @@ ROMAN_LETTER_VALUES =
 ROMAN_REGEX = /IV|IX|XL|XC|CD|CM|I|V|X|L|C|D|M|./g
 
 
-module.exports.parse = (romanNumbers) ->
-    if not romanNumbers? or typeof romanNumbers isnt 'string'
+module.exports.parse = (romanNumber) ->
+    if not romanNumber? or typeof romanNumber isnt 'string'
         return 0
-    if not romanLetters = romanNumbers.match ROMAN_REGEX
+    if not romanLetters = romanNumber.match ROMAN_REGEX
         return 0
 
     result = 0
