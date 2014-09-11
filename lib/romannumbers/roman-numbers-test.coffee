@@ -44,3 +44,8 @@ describe 'roman number parser', ->
         expect(parse('VX')).to.be.equal 0
         expect(parse('VM')).to.be.equal 0
 
+    it.skip 'should return 0 for roman numbers with extended subtraction rules', ->
+        expect(parse('IIV')).to.be.equal 0
+        expect(parse('IIIX')).to.be.equal 0
+        expect(parse('MXXL')).to.be.equal 0
+
