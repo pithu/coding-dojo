@@ -18,9 +18,9 @@ validSubtraction = (lastLetter, currentLetter) ->
 
 module.exports.parse = (romanNumeral) ->
     return 0 unless romanNumeral?
-    lastLetterValue = ROMAN_LETTER_VALUES[romanNumeral[0]]
     i = 0
     result = 0
+    lastLetterValue = ROMAN_LETTER_VALUES[romanNumeral[0]]
     while(currentLetterValue = ROMAN_LETTER_VALUES[romanNumeral[i++]])
         result += currentLetterValue
         if lastLetterValue < currentLetterValue
