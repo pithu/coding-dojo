@@ -7,6 +7,15 @@ ROMAN_LETTER_VALUES =
     'D': 500
     'M': 1000
 
+SUBTRACTION_FOLLOWERS =
+    'I': ['V']
+    'X': ['L']
+
+validSubtraction = (lastLetterValue, currentLetterValue) ->
+    console.log lastLetterValue, currentLetterValue, SUBTRACTION_FOLLOWERS[lastLetterValue]
+    (SUBTRACTION_FOLLOWERS[lastLetterValue] or []).indexOf(currentLetterValue) isnt -1
+
+
 module.exports.parse = (romanNumeral) ->
     return 0 unless romanNumeral?
     lastLetterValue = ROMAN_LETTER_VALUES[romanNumeral[0]]
@@ -14,7 +23,10 @@ module.exports.parse = (romanNumeral) ->
     result = 0
     while(currentLetterValue = ROMAN_LETTER_VALUES[romanNumeral[i++]])
         if lastLetterValue < currentLetterValue
-            #substract
+            if validSubtraction(lastLetterValue, currentLetterValue)
+                result -= 2 * lastLetterValue
+            else
+                return 0
         else
             result += currentLetterValue
 

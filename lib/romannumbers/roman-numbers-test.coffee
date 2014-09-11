@@ -20,3 +20,19 @@ describe 'roman number parser', ->
         expect(parse('HXX')).to.be.equal 0
         expect(parse(0)).to.be.equal 0
         expect(parse()).to.be.equal 0
+
+    it 'should return the right decimal value for roman numbers without subtraction rules', ->
+        expect(parse('III')).to.be.equal 3
+        expect(parse('XV')).to.be.equal 15
+        expect(parse('MMXIII')).to.be.equal 2013
+        expect(parse('MDCLXVI')).to.be.equal 1666
+
+    it.skip 'should return the right decimal value for roman numbers with subtraction rules', ->
+        expect(parse('IV')).to.be.equal 4
+        expect(parse('XIV')).to.be.equal 14
+        expect(parse('MXL')).to.be.equal 1040
+
+    it.skip 'should return 0 for roman numbers with invalid subtraction rules', ->
+        expect(parse('IM')).to.be.equal 0
+        expect(parse('IIM')).to.be.equal 0
+
