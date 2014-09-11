@@ -8,29 +8,36 @@ ROMAN_LETTER_VALUES =
     'M': 1000
 
 SUBTRACTION_FOLLOWERS =
-    'I': ['V']
-    'X': ['L']
+    'I': ['V', 'X']
+    'X': ['L', 'C']
+    'C': ['D', 'M']
 
 validSubtraction = (lastLetter, currentLetter) ->
-    # (SUBTRACTION_FOLLOWERS[lastLetter] or []).indexOf(currentLetter) isnt -1
-    return true
+    (SUBTRACTION_FOLLOWERS[lastLetter] or []).indexOf(currentLetter) isnt -1
 
+romanLetter = (letter) ->
+    if ROMAN_LETTER_VALUES[letter]?
+        letter: letter
+        value: ROMAN_LETTER_VALUES[letter]
+    else
+        undefined
 
 module.exports.parse = (romanNumeral) ->
     return 0 unless romanNumeral?
     i = 0
     result = 0
-    lastLetterValue = ROMAN_LETTER_VALUES[romanNumeral[0]]
-    while(currentLetterValue = ROMAN_LETTER_VALUES[romanNumeral[i++]])
-        result += currentLetterValue
-        if lastLetterValue < currentLetterValue
-            result -= 2 * lastLetterValue
-        lastLetterValue = currentLetterValue
+    lastLetter = romanLetter(romanNumeral[0])
+    while(currentLetter = romanLetter(romanNumeral[i++]))
+        result += currentLetter.value
+        if lastLetter.value < currentLetter.value
+            return 0 unless validSubtraction(lastLetter.letter, currentLetter.letter)
+            result -= 2 * lastLetter.value
+        lastLetter = currentLetter
 
-    if i < romanNumeral.length or (i is romanNumeral.length and not currentLetterValue?)
-        0
+    if i > romanNumeral.length
+        result
     else
-        result | 0
+        0
 
 
 
