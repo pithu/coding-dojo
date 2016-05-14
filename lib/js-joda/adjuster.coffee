@@ -1,13 +1,14 @@
+{DayOfWeek, LocalTime} = require 'js-joda'
 
-startOfBusinessDayAdjuster = 
+startOfBusinessDayAdjuster = (sob = LocalTime.of(9,30)) ->
     adjustInto: (temporal) ->
         temporal
 
-endOfBusinessDayAdjuster = 
+endOfBusinessDayAdjuster = (eob = LocalTime.of(18,0)) ->
     adjustInto: (temporal) ->
         temporal
 
-nextFriday13thAdjuster =
+nextFriday13thAdjuster = ->
     adjustInto: (temporal) ->
         temporal
         
